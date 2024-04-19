@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		*{
+			margin: 0px;
+			padding: 0px;
+			/* 所有文字阴影 */
+			text-shadow: 0px 0px 1px black;
+		}
+		/* 让body标签的高度和浏览器窗口一样高 */
+		html,body{
+			width: 100%;
+			height: 100%;
+		}
+		.head{
+			width: 100%;
+			height: 10%;
+			/* background-color: aqua; */
+			display: flex;
+			justify-content: space-between;
+			position: relative;
+			z-index: 2;
+		}
+		.center{
+			width: 100%;
+			height: 78%;
+			/* background-color: orange; */
+			position: relative;
+		}
+		.box{
+			width: 500px;
+			height: 200px;
+			/* background-color: aquamarine; */
+			position: absolute;
+			right: 100px;
+			bottom: 120px;
+		}
+		img{
+			width: 100%;
+		}
+		.box a{
+			width: 100px;
+			height: 40px;
+			position: absolute;
+			bottom: 0px;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px black;
+			background-size: 100% 100%;
+		}
+		.box .android{
+			right: 160px;
+			background-image: url(img/android.png);
+		}
+		.box .apple{
+			right: 50px;
+			background-image: url(img/apple.png);
+		}
+		.box .code{
+			right: 0px;
+			width: 40px;
+			background-image: url(img/ma2.png);
+		}
+		.footer{
+			width: 100%;
+			height: 12%;
+			/* background-color: pink; */
+			position: relative;
+		}
+	
+		.footer p{
+			text-align: center;
+			right: 50px;
+			color: white;
+			font-size: 13px;
+		}
+			.footer .gongan{
+				width: 20px;
+				height: 20px;
+				position: relative;
+				right: 2px;
+				top: 4px;
+			}
+			.footer a{
+				width: 150px;
+				height: 25px;
+				background-color: rgba(0, 0, 0, 0.2);
+				position: absolute;
+				right: 10px;
+				color: white;
+				text-decoration: none;
+				text-align: center;
+			}
+			.one{
+				bottom: 50px;
+			}
+			.two{
+				bottom: 20px;
+			}
+		.tubiao{
+			width: 20px;
+			position: relative;
+			top: 5px;
+		}
+		.logo{
+			width: 170px;
+			/* background-color: gainsboro; */
+			display: flex;
+			position: relative;
+			left: 50px;
+		}
+		.logo img{
+			width: 100%;
+		}
+		.nav{
+			width: 800px;
+			display: flex;
+			align-items: center;
+			position: relative;
+			right: 100px;
+			/* background-color: bisque; */
+		}
+		.navitem{
+			/* background-color: gold; */
+			flex: 1;
+			/* border: 1px solid black; */
+			text-align: center;
+			height: 30px;
+			line-height: 30px;
+			color: white;
+			font-size: 18px;
+		}
+		.navitem img{
+			width: 16px;
+			height: 16px;
+			position: relative;
+			top: 4px;
+		}
+		.dropdown{
+			background-color: white;
+			color: black;
+			box-shadow: 0px 0px 1px gray;
+			border-radius: 10px;
+			line-height: 40px;
+			padding: 10px 0px;
+			display: none;
+		}
+		.dropitem:hover{
+			background-color: gray;
+			color: white;
+		}
+		.navitem:hover .dropdown{
+			display: block;
+		}
+		.laba{
+			width: 25px;
+			height: 25px;
+			position: relative;
+			top: -5px;
+		}
+		video{
+			width: 100%;
+			height: 100%;
+			/* 拉伸播放视频内容 */
+			object-fit: cover;
+			position: absolute;
+		}
+	</style>
+	<body>
+		<video src="img/vido.mp4" autoplay="autoplay" muted="" loop="loop"></video>
+		<div class="head">
+			<div class="logo">
+				<img src="img/logo.png" alt="">
+			</div>
+			<div class="nav">
+				<div class="navitem">创作服务平台</div>
+				<div class="navitem">开放平台</div>
+				<div class="navitem">
+					系列产品
+					<img src="img/xiala.png" alt="">
+					<div class="dropdown">
+						<div class="dropitem">选项1</div>
+						<div class="dropitem">选项2</div>
+						<div class="dropitem">选项3</div>
+					</div>
+				</div>
+				<div class="navitem">
+					抖音直播
+					<img src="img/xiala.png" alt="">
+					<div class="dropdown">
+						<div class="dropitem">选项1</div>
+						<div class="dropitem">选项2</div>
+						<div class="dropitem">选项3</div>
+					</div>
+					</div>
+				<div class="navitem">
+					合作入驻
+					<img src="img/xiala.png" alt="">
+					<div class="dropdown">
+						<div class="dropitem">选项1</div>
+						<div class="dropitem">选项2</div>
+						<div class="dropitem">选项3</div>
+					</div>
+					</div>
+				<div class="navitem">
+					企业合作
+					<img src="img/xiala.png" alt="">
+					<div class="dropdown">
+						<div class="dropitem">选项1</div>
+						<div class="dropitem">选项2</div>
+						<div class="dropitem">选项3</div>
+					</div>
+					</div>
+				<div class="navitem">联系我们</div>
+				<img src="img/laba.png" class="laba" alt="">
+			</div>
+		</div>
+		<div class="center">
+			<div class="box">
+				<img src="img/jilu.png" alt="">
+				<a href="" class="android"></a>
+				<a href=" "class="apple"></a>
+				<a href="" class="code"></a>
+			</div>
+		</div>
+		<div class="footer">
+				<p>| 用户服务协议 | 隐私政策 | 账号找回 | 广告投放 | 营业执照 |</p>
+				<p>2023 © 抖音  | 京ICP备16016397号-3 | 北京微播视界科技有限公司 |  京B2-20170846</p>
+				<p>网络文化许可证-京网文-（2016）2282-264号 | 客户服务热线：95152 | 违法和不良信息举报电话：400-140-2108 | 未成年人守护热线：010-8963-3210 | 举报邮箱：jubao@douyin.com</p>
+				<p><img src="img/gongan.png" class="gongan" alt="">京公网安备 11000002002046号|地址 : 北京市海淀区中关村南大街36号12号楼16层1611号 </p>
+				<a href="" class="one">网络谣言曝光平台</a>
+				<a href="" class="two"><img src="img/图标.png" class="tubiao" alt="">网上有害信息举报</a>
+		</div>
+	</body>
+</html>
