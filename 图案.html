@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>人生如逆旅，我亦是行人。</title>
+</head>
+
+<body>
+    <div class="round-windows">
+        <div id="cloud"><span class='shadow'></span></div>
+        <canvas></canvas>
+    </div>
+    <script>
+        const canvas = document.querySelector('canvas')
+        const ctx = canvas.getContext('2d')
+
+        // canvas.width = window.innerWidth * devicePixelRatio
+        // canvas.height = window.innerHeight * devicePixelRatio
+
+        const windowProportion = 1
+
+        canvas.width = 500 * windowProportion
+        canvas.height = 500 * windowProportion
+
+        // console.dir(document.getElementsByClassName('round-windows')[0]);
+        // console.log(document.getElementsByClassName('round-windows')[0].offsetWidth);
+        // console.log(document.getElementsByClassName('round-windows')[0].offsetHeight);
+        // let roundWindow = document.getElementsByClassName('round-windows')[0]
+        // console.log(roundWindow.offsetHeight);
+        // roundWindow.style.width = roundWindow.offsetHeight * windowProportion + 'px'
+        // roundWindow.style.height = roundWindow.offsetHeight * windowProportion + 'px'
+
+        ctx.translate(canvas.width / 2, canvas.height - 80)
+        ctx.scale(1, -1)
+
+        // 整体树比例大小
+        const proportion = 0.36 * windowProportion
+        const colorList = ['#fff', '#a44', '#917']
+        const colorRate = [0.9, 0.03, 0.02]
+
+        const colorRateCount = []
+        colorRate.reduce((preVal, currentVal, index, array) => {
+            colorRateCount.push(preVal + currentVal)
+            return preVal + currentVal
+        }, 0)
+        console.log(colorRateCount);
+        drawBranch([0, 0], 200 * proportion, 30 * proportion, 90)
+
+        function drawBranch(v0, length, thick, dir) {
+            if (thick < 10 * proportion && Math.random() < 0.20) {
+                return
+            }
+            if (thick < 5 * proportion && Math.random() < 0.15) {
+                drawFlower(v0, (3 + Math.random() * 6) * proportion)
+                return
+            }
+            if (length < 5 * proportion || thick < 2 * proportion) {
+                drawFlower(v0, (3 + Math.random() * 6) * proportion)
+                return
+            }
+            ctx.beginPath()
+            ctx.moveTo(...v0)
+            const v1 = [
+                v0[0] + length * Math.cos((dir * Math.PI) / 180),
+                v0[1] + length * Math.sin((dir * Math.PI) / 180)
+            ]
+            ctx.lineTo(...v1)
+            ctx.lineWidth = thick
+            ctx.fillStyle = '#4b3923'
+            // ctx.fillStyle = '#FFF'
+            ctx.lineCap = 'round'
+            // ctx.lineCap = 'butt'
+            ctx.stroke()
+
+            // 递归调用
+            const nextLength = length * 0.8 * (0.94 + Math.random() * 0.14)
+            const nextThick = thick * 0.8 * (0.94 + Math.random() * 0.14)
+            const maxAngle = 25 + Math.random() * 10
+
+            let cha = Math.random() * maxAngle
+            if (cha < 12 && length > 150 * proportion) {
+                cha += 10
+            }
+
+            drawBranch(v1, nextLength, nextThick, dir + cha)
+            drawBranch(v1, nextLength, nextThick, dir - cha)
+        }
+
+        function drawFlower(v0, radius) {
+            ctx.beginPath()
+            ctx.arc(...v0, radius, 0, 2 * Math.PI)
+            const colorRand = Math.random()
+            let colorIndex = colorRateCount.findIndex((item) => item > colorRand)
+            ctx.fillStyle = colorList[colorIndex]
+            ctx.fill()
+        }
+
+    </script>
+</body>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        height: 100%;
+    }
+
+    body {
+        background: #dcd493;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    canvas {
+        margin-bottom: -5px;
+        position: relative;
+        z-index: 100;
+    }
+
+    .round-windows {
+        width: 500px;
+        height: 500px;
+        /*margin: 100px auto;*/
+        border-radius: 50%;
+        background: #78a794;
+        overflow: hidden;
+        position: absolute;
+    }
+
+    .round-windows:after {
+        content: '';
+        position: relative;
+        display: block;
+        left: -200px;
+        bottom: 150px;
+        width: 900px;
+        height: 500px;
+        border-radius: 50%;
+        background: #21393b;
+        z-index: 10;
+    }
+
+    #cloud {
+        width: 330px;
+        height: 120px;
+        background: #f2f9fe;
+        background: -webkit-linear-gradient(top, #f2f9f3 5%, #d6f0fd 100%);
+        background: -moz-linear-gradient(top, #f2f9fe 5%, #d6f0fd 100%);
+        background: -ms-linear-gradient(top, #f2f9fe 5%, #d6f0fd 100%);
+        background: -o-linear-gradient(top, #f2f9fe 5%, #d6f0fd 100%);
+        background: linear-gradient(top, #f2f9fe 5%, #d6f0fd 100%);
+        border-radius: 100px;
+        /* position: absolute; */
+        position: absolute;
+        /* top: 10px;
+        left: 50px; */
+        margin: 100px 0 0 60px;
+        z-index: 5;
+    }
+
+    #cloud:after,
+    #cloud:before {
+        content: "";
+        position: absolute;
+        background: #f2f9fe;
+        z-index: -1;
+    }
+
+    #cloud:after {
+        width: 100px;
+        height: 100px;
+        top: -50px;
+        left: 50px;
+        border-radius: 100px;
+    }
+
+    #cloud:before {
+        width: 180px;
+        height: 180px;
+        top: -90px;
+        right: 50px;
+        border-radius: 200px;
+    }
+
+    .shadow {
+        width: 350px;
+        position: absolute;
+        bottom: -10px;
+        background: #000;
+        z-index: -1;
+        box-shadow: 0 0 25px 8px rgba(0, 0, 0, 0.4);
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+    }
+</style>
+
+</html>
